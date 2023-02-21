@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { BsCheck2 } from 'react-icons/bs'
 import { RxCross2 } from 'react-icons/rx'
-import { Card, Grid, Text, Container, Input, Button, Divider, Spacer, Row, Tooltip } from "@nextui-org/react";
+import { Card, Grid, Text, Container, Input, Button, Divider, Spacer, Row, Tooltip, useInput } from "@nextui-org/react";
 
 
 const todos: string[] = [];
@@ -32,8 +32,13 @@ const removeTodo = (todo: string) => {
   //delete todos[todoID]; 
 }
 
+const cancelInput = () => {
+  console.log("Hello World.")
+}
+
 
 export default function Home() {
+  const {reset, bindings} = useInput("");
   return (
     <>
       <Container display="flex" justify="center" alignItems="center" css={{ "minHeight": "40vh",}}>
@@ -44,13 +49,13 @@ export default function Home() {
               <Divider/>
               <Spacer y={2} />
               <Row>
-                <Input size="lg"  animated={false} css={{ "width": "100%", display: "inline-block" }} placeholder="Add a todo..." />
+                <Input size="lg" {...bindings} animated={false} css={{ "width": "100%", display: "inline-block" }} placeholder="Add a todo..." />
                 <Tooltip content={"Confirm"} hideArrow css={{ "borderRadius": "10px" }}>
                 <Button auto css={{ "bg": "#16181A", "color": "#38d976", "marginLeft": "$sm"}}><BsCheck2 size={24}/></Button>
                 </Tooltip>
 
                 <Tooltip content={"Cancel"} hideArrow css={{ "borderRadius": "10px" }}>
-                  <Button auto css={{ "bg": "#16181A", "color": "#d93848", "marginLeft": "$xs"}}><RxCross2 size={24}/></Button>
+                  <Button auto onPress={() => reset()} css={{ "bg": "#16181A", "color": "#d93848", "marginLeft": "$xs"}}><RxCross2 size={24}/></Button>
                 </Tooltip>
               </Row>
             </Card.Body>
