@@ -21,8 +21,6 @@ const todoCount= () => {
 const checkTodos = () => {
   if (todos.length === 0) {
     return <Text h4 css={{ "marginLeft": "auto", "marginRight": "auto", "fontWeight": "500" }}>Please add a Todo for it to show here...</Text>;
-  } else {
-    return <Text h4 css={{ "marginLeft": "auto", "marginRight": "auto", "fontWeight": "500" }}>{todos.length}</Text>;
   }
 }
 
@@ -63,6 +61,19 @@ export default function Home() {
             </Card.Body>
           </Grid.Container>
             {checkTodos()}
+            
+            {todos.map(todo => (
+              <Text h4 css={{ "marginLeft": "$lg", "fontWeight": "500" }}>
+                <Row>
+                {todo}
+                <Button auto css={{ "bg": "#16181A", "color": "#d93848", "marginLeft": "auto", "marginRight": "$sm"}}><RxCross2 size={24}/></Button>
+                </Row>
+                <Spacer y={0.5} />
+                <Divider/>
+                <Spacer y={0.5} />
+                </Text>
+            ))}
+
           <Grid.Container>
             <Card.Footer>
               <Text css={{ color: "#737272", "marginLeft": "auto", "marginRight": "auto" }}>Made with ❤️ by Katsu</Text>
