@@ -32,6 +32,12 @@ const removeTodo = (todo: string) => {
   //delete todos[todoID]; 
 }
 
+const clearAll = () => {
+  while (todos.length > 0) {
+    todos.pop();
+  }
+}
+
 export default function Home() {
   return (
     <>
@@ -65,7 +71,7 @@ export default function Home() {
                 <Text h2 css={{ "marginLeft": "auto", "marginRight": "31%" }}>Todo List</Text>
 
                 <Tooltip content={"Clear All"}>
-                  <Button auto onPress={() => console.log("Hello There from the button on the fucking thingy")} css={{ "bg": "#16181A", "color": "#d93848", "marginLeft": "auto", "marginTop": "$sm"}}><RxCross2 size={24}/></Button>
+                  <Button auto onPress={() => (clearAll())} css={{ "bg": "#16181A", "color": "#d93848", "marginLeft": "auto", "marginTop": "$sm"}}><RxCross2 size={24}/></Button>
                 </Tooltip>
               </Row>
               <Divider/>
