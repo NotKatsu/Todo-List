@@ -6,10 +6,23 @@ import { Card, Grid, Text, Container, Input, Button, Divider, Spacer, Row, Toolt
 
 
 const todos: string[] = [];
+todos.push("Eat my 5 a day.")
+todos.push("Make breakfast.")
+todos.push("Go shopping and buy bread, milk and butter.")
+
+const todoCount= () => {
+  if (todos.length === 0) {
+    return null
+  } else {
+    return todos.length
+  }
+}
 
 const checkTodos = () => {
   if (todos.length === 0) {
     return <Text h4 css={{ "marginLeft": "auto", "marginRight": "auto", "fontWeight": "500" }}>Please add a Todo for it to show here...</Text>;
+  } else {
+    return <Text h4 css={{ "marginLeft": "auto", "marginRight": "auto", "fontWeight": "500" }}>{todos.length}</Text>;
   }
 }
 
@@ -43,7 +56,7 @@ export default function Home() {
         <Card css={{ "mw":"700px", "shadow": "none", "bg": "#2A2B2B" }}>
           <Grid.Container>
             <Card.Body>
-              <Text h2 css={{ "marginLeft": "auto", "marginRight": "auto" }}>Todo List</Text>
+              <Text h2 css={{ "marginLeft": "auto", "marginRight": "auto" }}>Todo List ({todoCount()})</Text>
               <Divider/>
               <Spacer y={1} />
                 
